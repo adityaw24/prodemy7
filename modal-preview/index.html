@@ -176,7 +176,6 @@
                     let valueReligion = $('#religion').val();
                     let valueFoto = $('#photo').val();
 
-                    document.getElementById("card-name").innerHTML = valueNama;
                     $('#card-name').html(valueNama);
                     $('#card-ttgl').html(valueTTGL);
                     $('#card-job').text(valueJob);
@@ -215,6 +214,21 @@
                     } else {
                         event.preventDefault();
                         $("#previewCard").modal("show");
+
+                        let valueNama = $('#nama').val();
+                        let valueTTGL = $('#ttgl').val();
+                        let valueJob = $('#job').val();
+                        let valuePhone = $('#phone').val();
+                        let valueGender = $('input[name="gender"]:checked').val();
+                        let valueReligion = $('#religion').val();
+                        let valueFoto = $('#photo').val();
+
+                        $('#card-name').html(valueNama);
+                        $('#card-ttgl').html(valueTTGL);
+                        $('#card-job').text(valueJob);
+                        $('#card-gender').html(valueGender);
+                        $('#card-religion').html(valueReligion);
+                        $('#card-phone').html(valuePhone);
                     }
 
                     form.classList.add('was-validated')
