@@ -63,6 +63,72 @@ function modifiedString(){
         }
         star.push(" ");
     }
+
+    // change vowels to even odd number
+    let odd;
+    let even;
+    let oddNum = -1;
+    let evenNum = 0;
+    let oddWord = [];
+    let evenWord = [];
+    for (let i in input) {
+        if(vowels.has(input[i])){
+            evenNum += 2;
+            oddNum += 2;
+            even = input[i].replace(input[i], evenNum.toString());
+            odd = input[i].replace(input[i], oddNum.toString());
+            evenWord.push(even);
+            oddWord.push(odd);
+        }
+        else{
+            evenWord.push(input[i]);
+            oddWord.push(input[i]);
+        }
+    }
+
+    // change vowels to word number combinations
+    let angka = 0;
+    let index = 0;
+    let huruf = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+    let wordNumberCombination = [];
+    let angkaHuruf = [];
+    let angkaHuruf2;
+    let angkaHurufFinals = [];
+    for (let i in input) {
+        angka += 1;
+        wordNumberCombination.push(angka.toString());
+        wordNumberCombination.push(huruf[i]);
+        
+        wordNumberCombination.splice(input.length, (input.length * 2));
+
+        if (vowels.has(input[i])) {
+            angkaHuruf.push(wordNumberCombination[index]);
+            index++;
+        } else {
+            angkaHuruf.push(input[i]);
+        }
+    }
+
+
+    const objek = {
+        deretFibo : wordFibonacci.join(""),
+        deretGanjil: oddWord.join(""),
+        deretGenap: evenWord.join(""),
+        deretAngkaHuruf: angkaHuruf.join(""),
+    };
+    
+    if ($('#fibonacci').is(':checked')) {
+        $('#hasil').html(objek.deretFibo);
+    }
+    if ($('#genap').is(':checked')) {
+        $('#hasil').html(objek.deretGenap);
+    }
+    if ($('#ganjil').is(':checked')) {
+        $('#hasil').html(objek.deretGanjil);
+    }
+    if ($('#angkaHuruf').is(':checked')) {
+        $('#hasil').html(objek.deretAngkaHuruf);
+    }
     
     $('#jumlahHuruf').html(text.length);
     $('#jumlahKata').html(word.length);
@@ -71,6 +137,9 @@ function modifiedString(){
     $('#vokal-deret-angka').html(wordNum.join(""));
     $('#vokal-fibonacci').html(wordFibonacci.join(""));
     $('#middle-star').html(star.join(""));
+    $('#pengganti-genap').html(evenWord.join(""));
+    $('#pengganti-ganjil').html(oddWord.join(""));
+    $('#pengganti-angka-huruf').html(wordNumberCombination.join(""));
 
     console.log('Teks Input : ' + input);
     console.log('Jumlah Huruf : ' + text.length);
