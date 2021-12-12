@@ -8,17 +8,17 @@ function App() {
   const [userData, setUserData] = useState([]);
   const [modalShow, setModalShow] = useState(false);
   const [number, setNumber] = useState(0);
-  const toggle = () => {
-    setModalShow(!modalShow);
-  };
+  // const toggle = () => {
+  //   setModalShow(!modalShow);
+  // };
 
   // Gather data from Form component and set modalShow to true
-  const handleSubmitData = (userDataForm) => {
+  const handleSubmitData = (userData) => {
     setUserData((prevState) => {
       return [
         ...prevState,
         {
-          ...userDataForm,
+          ...userData,
           number: String(number),
         },
       ];
@@ -28,9 +28,12 @@ function App() {
   };
 
   const handleResetData = () => {
-    setUserData("");
-    setModalShow(false);
+    setUserData([]);
   };
+
+  // const closeHandler = () => {
+  //   setModalShow(false);
+  // };
 
   console.log(modalShow);
   console.log(userData);
@@ -43,25 +46,19 @@ function App() {
           width: "45%",
         }}
       >
-        <FormData submitData={handleSubmitData} onClick={toggle} />{" "}
-        <div className="row">
-          <div className="col-6">
-            {" "}
-            {modalShow && (
-              <ModalPreview
-                user={userData}
-                modalShow={modalShow}
-                // initialModalState={false}
-              />
-            )}{" "}
-          </div>{" "}
-          <div className="col-6">
-            <button className="btn btn-danger w-100" onClick={handleResetData}>
-              Reset Data{" "}
-            </button>{" "}
-          </div>{" "}
-        </div>{" "}
-      </div>{" "}
+        <FormData submitData={handleSubmitData} />
+        <button className="btn btn-danger w-100 mb-3" onClick={handleResetData}>
+          Reset Data
+        </button>
+        {modalShow && (
+          <ModalPreview
+            user={userData}
+            // modalShow={modalShow}
+            // onClick={toggle}
+            // initialModalState={false}
+          />
+        )}
+      </div>
     </Container>
   );
 }
