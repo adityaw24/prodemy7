@@ -3,7 +3,6 @@ import "@coreui/coreui/dist/css/coreui.min.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Col, Form, Input, Label, FormGroup } from "reactstrap";
 import React, { useState } from "react";
-import "./FormData.css";
 
 function FormData(props) {
   const [formUser, setFormUser] = useState([]);
@@ -26,18 +25,6 @@ function FormData(props) {
     setUser({ ...user, [e.target.name]: src });
   };
 
-  // const user = {
-  //   nama: "",
-  //   tanggalLahir: "",
-  //   job: "",
-  //   gender: "",
-  //   agama: "",
-  //   kontak: "",
-  //   email: "",
-  // };
-
-  // console.log(user);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
@@ -50,16 +37,6 @@ function FormData(props) {
     // Gather all data from input
     setFormUser([...formUser, user]);
     setUser(user);
-    // const user = {
-    //   nama: nama,
-    //   tanggalLahir: tanggalLahir,
-    //   job: job,
-    //   gender: gender,
-    //   agama: agama,
-    //   kontak: kontak,
-    //   email: email,
-    //   avatar: avatar,
-    // };
 
     props.submitData(user);
   };
